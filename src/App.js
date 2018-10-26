@@ -1,24 +1,46 @@
 import React, { Component } from 'react';
-import one from './assets/three.svg';
+import one from './assets/one.svg';
+import two from './assets/two.svg';
+import three from './assets/three.svg';
+import four from './assets/four.svg';
+import five from './assets/five.svg';
+import six from './assets/six.svg';
 import './App.css';
+import { Button } from '@material-ui/core/Button';
+
+const faces = [one, two, three, four, five, six];
 
 class App extends Component {
 
   constructor(props){
     super(props);
     this.state = {
-      roll: "dice-roll"
+      roll: false, 
+      face: five
     }
   }
 
+  randomizeFace(){
+    let interval = setInterval(()=>{
+        this.setState({
+          face: faces[Math.floor(Math.random() * faces.length)]
+        })
+      },10);
+    setTimeout(2500);
+    clearInterval(interval);
+  }
+
   render() {
+    
     return (
       <div className="App">
         <header className="App-header">
-          <img src={one} className={this.state.roll ? "dice-roll" : "dice-stop"}  alt="dice" />
+          
+          <img src={this.state.face} className={this.state.roll ? "dice-roll" : "dice-stop"}  alt="dice" />
           <p>
             <code>kndarp/roll</code> 
           </p>
+          <Button className="roll-button">Roll</Button>
         </header>
       </div>
     );
@@ -27,11 +49,20 @@ class App extends Component {
   componentDidMount() {
     setInterval(() => {
       let current = this.state.roll;
-      this.setState({
+      this.randomizeFace();
+        this.setState({
         roll: !current
       });
     }, 3000);
   }
+
+  componentDidUpdate(){
+    if(this.state.roll){
+      this.randomizeFace();
+    }
+  }
+
+  
 }
 
 export default App;
