@@ -2,7 +2,11 @@
   text-align: center;
 }
 
-.dice {
+.dice-stop{
+  height: 20vmin;
+}
+
+.dice-roll {
   animation: App-logo-spin infinite 1s linear;
   height: 20vmin;
 }
