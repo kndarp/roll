@@ -49,17 +49,10 @@ class App extends Component {
   componentDidMount() {
     setInterval(() => {
       let current = this.state.roll;
-      this.randomizeFace();
         this.setState({
         roll: !current
       });
     }, 3000);
-  }
-
-  componentDidUpdate(){
-    if(this.state.roll){
-      this.randomizeFace();
-    }
   }
 
   
